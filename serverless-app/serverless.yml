@@ -1,0 +1,54 @@
+
+org: rbastos
+app: crud-app
+service: serverless-app
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  environment:
+    MONGO_URI: mongodb://localhost:27017/local
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /
+          method: get
+  createCustomer:
+    handler: createCustomer.createCustomer
+    events:
+      - httpApi:
+          path: /
+          method: post
+  createAvailability:
+    handler: availability.createAvailability
+    events:
+      - httpApi:
+          path: /createAvailability
+          method: post
+  getAvailabilities:
+    handler: availability.getAvailabilities
+    events:
+      - httpApi:
+          path: /availabilities
+          method: get
+  createHoliday:
+    handler: availability.createHoliday
+    events:
+      - httpApi:
+          path: /createHoliday
+          method: post
+  getHolidays:
+    handler: availability.getHolidays
+    events:
+      - httpApi:
+          path: /holidays
+          method: get
+  closestSIP:
+    handler: availability.closestSIP
+    events:
+      - httpApi:
+          path: /closestSIP
+          method: post
